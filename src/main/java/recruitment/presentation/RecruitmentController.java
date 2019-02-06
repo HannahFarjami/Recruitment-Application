@@ -1,7 +1,6 @@
-package recruitment.presentation.conv;
+package recruitment.presentation;
 
 import recruitment.domain.FieldAlreadyExistException;
-import recruitment.presentation.error.ExceptionHandlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
