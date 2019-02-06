@@ -27,7 +27,8 @@
             <p class="form"><label for="register-password">Password</label>:<input type="text" th:field="*{password}" id="register-password"/>
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error
             </span></p><br><br>
-            <p class="submit"><input type="submit" value="Register"/>
+            <p class="submit"><input type="submit" value="Register"/><br><br>
+                <span class="error" th:if="${errorMessage != null}" th:text="${errorMessage}"></span>
         </form>
     </section>
 

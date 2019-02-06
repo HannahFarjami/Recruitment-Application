@@ -10,4 +10,8 @@ import recruitment.domain.Person;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface PersonRepository extends JpaRepository<Person, String> {
 
+    Person findByMail(String mail);
+    Person findBySsn(String ssn);
+
+
 }

@@ -57,6 +57,10 @@ public class Person implements PersonDTO {
         this.password = password;
     }
 
+    public Person() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }

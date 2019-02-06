@@ -15,25 +15,29 @@ public class RecruitmentService {
     @Autowired
     private PersonRepository personRepo;
 
-    public PersonDTO createPerson(String firstName, String lastName, String ssn, String mail, String password) {
+    public PersonDTO createPerson(String firstName, String lastName, String ssn, String mail, String password) throws FieldAlreadyExistException{
+        if(isMailRegistered(mail)) {
+            throw new FieldAlreadyExistException("Mail already exist");
+        }
+        if(isSsnRegistered(ssn)) {
+            throw new FieldAlreadyExistException("Ssn already exist");
+        }
         return personRepo.save(new Person(firstName, lastName, ssn, mail, password));
     }
 
-    /*public ConversionDTO findConversion(String fromto) {
-        return converterRepo.findConversionByFromto(fromto);
+    private boolean isMailRegistered(String mail) {
+        PersonDTO person = personRepo.findByMail(mail);
+        if(person == null)
+            return false;
+        return true;
     }
 
-    public void setNewRate(double value, String fromto) {
-        converterRepo.setNewRate(value, fromto);
-
+    private boolean isSsnRegistered(String ssn) {
+        PersonDTO person = personRepo.findBySsn(ssn);
+        if(person == null)
+            return false;
+        return true;
     }
-    public void setNewCount(int count, String fromto) {
-        converterRepo.setNewCount(count, fromto);
-    }
-
-    public int countSum() {
-        return converterRepo.countSum();
-    } */
 
 
 }
