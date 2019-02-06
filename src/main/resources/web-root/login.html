@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{resources/fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <section>
+        <h1>Login here</h1>
+
+        <form th:action="@{/loginPerson}" th:object="${loginForm}" method="post">
+            <p class="form"><label for="register-mail">Mail</label>:<input type="text" th:field="*{mail}" id="register-mail"/>
+                <span class="error" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Name Error
+            </span></p><br><br>
+            <p class="form"><label for="register-password">Password</label>:<input type="text" th:field="*{password}" id="register-password"/>
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error
+            </span></p><br><br>
+            <p class="submit"><input type="submit" value="Register"/>
+            </p>
+        </form>
+    </section>
+
+</main>
+</body>
+</html>
