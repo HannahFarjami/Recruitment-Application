@@ -24,7 +24,7 @@ public class RecruitmentService {
         }
         return personRepo.save(new Person(firstName, lastName, ssn, mail, password));
     }
-
+ //hej
     private boolean isMailRegistered(String mail) {
         PersonDTO person = personRepo.findByMail(mail);
         if(person == null)
