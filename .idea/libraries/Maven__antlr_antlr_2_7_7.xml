@@ -2,10 +2,6 @@
   <library name="Maven: antlr:antlr:2.7.7">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.7/antlr-2.7.7.jar!/" />
-      <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/PostgreSQL/42.2.2/jna-platform-win-4.4.0.jar!/" />
-      <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/PostgreSQL/42.2.2/jna-win-4.4.0.jar!/" />
-      <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/PostgreSQL/42.2.2/postgresql-42.2.2.jar!/" />
-      <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/PostgreSQL/42.2.2/waffle-jna-win-1.8.1.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.7/antlr-2.7.7-javadoc.jar!/" />
