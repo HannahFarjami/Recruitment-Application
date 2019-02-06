@@ -22,9 +22,10 @@ public class RecruitmentService {
         if(isSsnRegistered(ssn)) {
             throw new FieldAlreadyExistException("Ssn already exist");
         }
+        Person person = new Person(firstName, lastName, ssn, mail, password);
         return personRepo.save(new Person(firstName, lastName, ssn, mail, password));
     }
- //hej
+
     private boolean isMailRegistered(String mail) {
         PersonDTO person = personRepo.findByMail(mail);
         if(person == null)

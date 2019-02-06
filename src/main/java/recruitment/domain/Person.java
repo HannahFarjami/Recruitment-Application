@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "PERSON")
@@ -48,6 +49,10 @@ public class Person implements PersonDTO {
     @Size(min = 4, max = 15, message = "{password.length}")
     @Column
     private String password;
+
+    @ManyToMany
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "PERSON_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roles;
 
     public Person(String firstName, String lastName, String ssn, String mail, String password) {
         this.firstName = firstName;
@@ -103,6 +108,14 @@ public class Person implements PersonDTO {
 
     public long getId() {
         return id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
