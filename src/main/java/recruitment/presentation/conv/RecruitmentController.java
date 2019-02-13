@@ -60,13 +60,6 @@ public class RecruitmentController {
         return SUCCESSFUL_REGISTRATION;
     }
 
-    @PostMapping("/loginPerson")
-    public String loginPerson(@Valid LoginForm loginForm, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            return LOGIN_URL;
-        }
-        return LOGIN_URL;
-    }
 
     @PostMapping("/" + "registerPerson")
     public String registerPerson(@Valid CreatePersonForm createPersonForm, BindingResult bindingResult, Model model) {

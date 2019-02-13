@@ -24,7 +24,7 @@
             <p class="form"><label for="register-mail">Mail</label>:<input type="text" th:field="*{mail}" id="register-mail"/>
                 <span class="error" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Name Error
             </span></p><br><br>
-            <p class="form"><label for="register-password">Password</label>:<input type="text" th:field="*{password}" id="register-password"/>
+            <p class="form"><label for="register-password">Password</label>:<input type="password" th:field="*{password}" id="register-password"/>
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error
             </span></p><br><br>
             <p class="submit"><input type="submit" value="Register"/><br><br>
