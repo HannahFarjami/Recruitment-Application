@@ -1,5 +1,9 @@
 package recruitment.application;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import recruitment.domain.*;
 
@@ -25,6 +29,15 @@ public class RecruitmentService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public String findLoggedInUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+        }
+        return null;
+    }
 
     public PersonDTO createPerson(String firstName, String lastName, String ssn, String mail, String password) throws FieldAlreadyExistException{
         if(isMailRegistered(mail)) {

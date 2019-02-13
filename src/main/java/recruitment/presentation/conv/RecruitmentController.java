@@ -47,6 +47,12 @@ public class RecruitmentController {
         return LOGIN_URL;
     }
 
+    @GetMapping("/user")
+    public String showUser(){
+        System.out.println(service.findLoggedInUsername());
+        return "test";
+    }
+
 
     @GetMapping("/" + REGISTER_URL)
     public String showRegisterView(CreatePersonForm createPersonForm) {
