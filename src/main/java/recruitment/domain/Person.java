@@ -46,13 +46,12 @@ public class Person implements PersonDTO {
     @Column
     private String mail;
 
-    @Size(min = 4, max = 15, message = "{password.length}")
+    @Size(min = 4, max = 100, message = "{password.length}")
     @Column
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "PERSON_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private Set<Role> roles;
+    @ManyToOne
+    private Role role;
 
     public Person(String firstName, String lastName, String ssn, String mail, String password) {
         this.firstName = firstName;
@@ -110,12 +109,12 @@ public class Person implements PersonDTO {
         return id;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

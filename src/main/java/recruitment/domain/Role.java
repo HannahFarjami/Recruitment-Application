@@ -11,14 +11,14 @@ public class Role {
 
     @Id
     @GeneratedValue
-    @Column(name="ROLE_ID",updatable = false)
-    private long id;
+    @Column(name="ID",updatable = false)
+    private Integer id;
 
     @NotNull
     @Column(name = "NAME")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @OneToMany(mappedBy = "role")
     private Set<Person> persons;
 
     public Role() {
@@ -28,11 +28,11 @@ public class Role {
         this.name = name;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

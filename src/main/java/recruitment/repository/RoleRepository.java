@@ -8,5 +8,7 @@ import recruitment.domain.Role;
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public interface RoleRepository extends JpaRepository<Role,Long> {
+public interface RoleRepository extends JpaRepository<Role,Integer> {
+
+    Role findById(int id);
 }
