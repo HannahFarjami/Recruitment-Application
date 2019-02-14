@@ -44,11 +44,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * Gets the currently logged in user
      * @return email of the current logged in user, if there are no currently logged in user null will be returned
      */
-    public String findLoggedInUsername() {
+    public PersonDTO findLoggedInUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
-            return currentUserName;
+            return personRepository.findByMail(currentUserName);
         }
         return null;
     }
@@ -71,7 +71,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new FieldAlreadyExistException("Ssn already exist");
         }
         Person person = new Person(firstName, lastName, ssn, mail, passwordEncoder.encode(password));
-        Role role = roleRepository.findById(1);
+        Role role = roleRepository.findById(2);
         person.setRole(role);
         return personRepository.save(person);
     }

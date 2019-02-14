@@ -1,5 +1,5 @@
 INSERT INTO PERSON (PERSON_ID, FIRST_NAME, LAST_NAME, SSN, MAIL, PASSWORD)
-VALUES (1, 'Maria', 'Ravander', '123456789012', 'maria@kth.se', 'bkjbjb');
+VALUES (1, 'Maria', 'Ravander', '123456789013', 'j@test.com', '$2a$10$Px1NvFvdbSZYhg7c3rjjqu503CFuQUQnw23TnYeHiBMFAgAn3PYuy');
 
 INSERT INTO ROLE(ID,NAME)
 VALUES (1,'APPLICANT');

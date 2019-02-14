@@ -11,7 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import recruitment.application.UserDetailsServiceImpl;
+import recruitment.domain.MySimpleUrlAuthenticationSuccessHandler;
 
 /**
  * Loads the security configurations
@@ -43,6 +45,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
+     * Bean for handle successful login for different roles
+     * @return
+     */
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
+    /**
      * Configure rules regarding different http requests
      * @param http
      * @throws Exception
@@ -59,6 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .successHandler(myAuthenticationSuccessHandler())
+                //.defaultSuccessUrl("/applicant-home",true)
                 .permitAll()
                 .and()
                 .logout()

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import recruitment.application.RecruitmentService;
+import recruitment.domain.Person;
 import recruitment.domain.PersonDTO;
 
 import javax.validation.Valid;
@@ -25,6 +26,8 @@ public class RecruitmentController {
     static final String REGISTER_URL = "register";
     static final String LOGIN_URL = "login";
     static final String SUCCESSFUL_REGISTRATION = "success-registration";
+    static final String APPLICANT_HOME_URL = "applicant-home";
+    static final String RECRUITER_HOME_URL = "recruiter-home";
 
     private static final String CREATE_PERSON_OBJ_NAME = "createPersonForm";
 
@@ -51,11 +54,6 @@ public class RecruitmentController {
         return LOGIN_URL;
     }
 
-    @GetMapping("/user")
-    public String showUser(){
-        System.out.println(service.findLoggedInUsername());
-        return "test";
-    }
 
     /**
      * Get request for register page
@@ -66,6 +64,29 @@ public class RecruitmentController {
         return REGISTER_URL;
     }
 
+
+
+    @GetMapping("/"+APPLICANT_HOME_URL)
+    public String applicantHomeView(Model model){
+        PersonDTO person = service.findLoggedInUser();
+        if(person==null){
+            return LOGIN_URL;
+        }
+        model.addAttribute("person",person);
+
+        return APPLICANT_HOME_URL;
+    }
+
+    @GetMapping("/" + RECRUITER_HOME_URL)
+    public String recruiterHomeView(Model model){
+        PersonDTO person = service.findLoggedInUser();
+        if(person==null){
+            return LOGIN_URL;
+        }
+        model.addAttribute("person",person);
+
+        return RECRUITER_HOME_URL;
+    }
     /**
      * Post request for a registration form
      * @param createPersonForm content of the registration form

@@ -16,7 +16,7 @@ public class Person implements PersonDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME_KEY)
-    @SequenceGenerator(name = SEQUENCE_NAME_KEY, sequenceName = "PERSON_SEQUENCE", initialValue = 100)
+    @SequenceGenerator(name = SEQUENCE_NAME_KEY, sequenceName = "PERSON_SEQUENCE")
     @Column(name="PERSON_ID", updatable=false)
     private long id;
 
@@ -63,6 +63,7 @@ public class Person implements PersonDTO {
     public Person() {
     }
 
+    @Override
     public String getFirstName() {
         return firstName;
     }
