@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,18 +17,32 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-
+/**
+ * Loads the configuration for the recruitment application except the security configuration {@link SecurityConfig}
+ * @see SecurityConfig
+ */
 @EnableTransactionManagement
 @EnableWebMvc
 @Configuration
 public class RecruitmentConfig implements WebMvcConfigurer, ApplicationContextAware {
     private ApplicationContext applicationContext;
 
+
+    /**
+     * @param applicationContext The application context used by the running
+     *                           application.
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * Create a <code>org.springframework.web.servlet .ViewResolver</code> bean
+     * that delegates all views to thymeleaf's template engine. There is no need
+     * to specify view name patterns since the will be the only existing view
+     * resolver.
+     */
     @Bean
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
@@ -36,7 +52,12 @@ public class RecruitmentConfig implements WebMvcConfigurer, ApplicationContextAw
         return viewResolver;
     }
 
-    @Bean(name = "currencyCoverterTemplateEngine")
+    /**
+     * Create a <code>org.thymeleaf.ITemplateEngine</code> bean that manages
+     * thymeleaf template integration with Spring. All template resolution will
+     * be delegated to the specified template resolver.
+     */
+    @Bean(name = "recruitmentTemplateEngine")
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
@@ -45,10 +66,14 @@ public class RecruitmentConfig implements WebMvcConfigurer, ApplicationContextAw
         return templateEngine;
     }
 
+    /**
+     * Create a <code>org.thymeleaf.templateresolver.ITemplateResolver</code>
+     * that can handle thymeleaf template integration with Spring. This will be
+     * the only existing template resolver.
+     */
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver =
-                new SpringResourceTemplateResolver();
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(this.applicationContext);
         templateResolver.setPrefix("classpath:/web-root/");
         templateResolver.setSuffix(".html");
@@ -57,6 +82,9 @@ public class RecruitmentConfig implements WebMvcConfigurer, ApplicationContextAw
         return templateResolver;
     }
 
+    /**
+     * Configuration of requests for static files.
+     **/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         int cachePeriodForStaticFilesInSecs = 1;

@@ -8,11 +8,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Table(name = "PERSON")
 public class Person implements PersonDTO {
     private static final String SEQUENCE_NAME_KEY = "SEQ_NAME";
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME_KEY)
@@ -45,9 +45,12 @@ public class Person implements PersonDTO {
     @Column
     private String mail;
 
-    @Size(min = 4, max = 15, message = "{password.length}")
+    @Size(min = 4, max = 100, message = "{password.length}")
     @Column
     private String password;
+
+    @ManyToOne
+    private Role role;
 
     public Person(String firstName, String lastName, String ssn, String mail, String password) {
         this.firstName = firstName;
@@ -58,7 +61,6 @@ public class Person implements PersonDTO {
     }
 
     public Person() {
-
     }
 
     public String getFirstName() {
@@ -103,6 +105,14 @@ public class Person implements PersonDTO {
 
     public long getId() {
         return id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

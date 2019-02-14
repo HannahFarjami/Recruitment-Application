@@ -10,6 +10,9 @@
         <a th:href="@{/}"><img th:src="@{resources/fragments/header-imgs/logo.png}" alt="recruitment logo"/></a>
     </figure>
     <p>Recruitment Application</p>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Log out</button>
+    </form>
 </header>
 </body>
 </html>
