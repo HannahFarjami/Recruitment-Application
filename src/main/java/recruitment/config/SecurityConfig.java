@@ -11,34 +11,42 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import recruitment.application.UserDetailsServiceImpl;
 
-
+/**
+ * Loads the security configurations
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*
     @Autowired
-    public void configureAuth(AuthenticationManagerBuilder auth)throws Exception{
-        auth
-                .inMemoryAuthentication()
-                .withUser("simon")
-                .password("password")
-                .roles("ADMIN");
-    }
-*/
+    UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    UserDetailsService userDetailsService;
-
+    /**
+     * Called by the framework to set the userDetailsService and passwordencoder to the authentication
+     * manager builder to use the database
+     * @param auth
+     * @throws Exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * Bean for the password encoder used in the application
+     * @return password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /**
+     * Configure rules regarding different http requests
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

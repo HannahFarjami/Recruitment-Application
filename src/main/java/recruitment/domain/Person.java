@@ -7,13 +7,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "PERSON")
 public class Person implements PersonDTO {
     private static final String SEQUENCE_NAME_KEY = "SEQ_NAME";
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME_KEY)
@@ -62,7 +61,6 @@ public class Person implements PersonDTO {
     }
 
     public Person() {
-
     }
 
     public String getFirstName() {

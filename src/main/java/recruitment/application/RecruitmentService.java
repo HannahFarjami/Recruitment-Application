@@ -17,6 +17,9 @@ import recruitment.repository.RoleRepository;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This class defines the operations that can be done in the domain layer regarding
+ */
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
 public class RecruitmentService {
@@ -26,45 +29,6 @@ public class RecruitmentService {
 
     @Autowired
     private RoleRepository roleRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public String findLoggedInUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-            return currentUserName;
-        }
-        return null;
-    }
-
-    public PersonDTO createPerson(String firstName, String lastName, String ssn, String mail, String password) throws FieldAlreadyExistException{
-        if(isMailRegistered(mail)) {
-            throw new FieldAlreadyExistException("Mail already exist");
-        }
-        if(isSsnRegistered(ssn)) {
-            throw new FieldAlreadyExistException("Ssn already exist");
-        }
-        Person person = new Person(firstName, lastName, ssn, mail, passwordEncoder.encode(password));
-        Role role = roleRepository.findById(1);
-        person.setRole(role);
-        return personRepo.save(person);
-    }
-
-    private boolean isMailRegistered(String mail) {
-        PersonDTO person = personRepo.findByMail(mail);
-        if(person == null)
-            return false;
-        return true;
-    }
-
-    private boolean isSsnRegistered(String ssn) {
-        PersonDTO person = personRepo.findBySsn(ssn);
-        if(person == null)
-            return false;
-        return true;
-    }
 
 
 }

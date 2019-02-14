@@ -31,7 +31,7 @@ public class ExceptionHandlers implements ErrorController {
     public static final String HTTP_404_INFO = "Sorry, but there is no such page. We would like to fix this error, please tell us what you where trying to do.";
     static final String ERROR_PATH = "failure";
 
-/*
+
     @ExceptionHandler(IllegalRecruitmentException.class)
     @ResponseStatus(HttpStatus.OK)
     public String handleException(IllegalRecruitmentException exception, Model model) {
@@ -67,7 +67,7 @@ public class ExceptionHandlers implements ErrorController {
     private String extractHttpStatusCode(HttpServletRequest request) {
         return request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString();
     }
- */
+
     @Override
     public String getErrorPath() {
         return "/" + ERROR_PATH;
