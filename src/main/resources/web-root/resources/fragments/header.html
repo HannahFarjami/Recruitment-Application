@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Rosa Lund</title>
@@ -10,9 +11,11 @@
         <a th:href="@{/}"><img th:src="@{resources/fragments/header-imgs/logo.png}" alt="recruitment logo"/></a>
     </figure>
     <p>Recruitment Application</p>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Log out</button>
-    </form>
+    <div class="navbar-text navbar-right">
+        <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+             <button type="button" href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</button>
+        </form>
+    </div>
 </header>
 </body>
 </html>

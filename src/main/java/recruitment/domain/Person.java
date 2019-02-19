@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 
 @Entity
@@ -51,6 +52,14 @@ public class Person implements PersonDTO {
 
     @ManyToOne
     private Role role;
+
+    @OneToMany(mappedBy = "person")
+    private Set<Availability> availabilitys;
+
+    @OneToMany(mappedBy = "person")
+    private Set<CompetenceProfile> competenceProfiles;
+
+
 
     public Person(String firstName, String lastName, String ssn, String mail, String password) {
         this.firstName = firstName;

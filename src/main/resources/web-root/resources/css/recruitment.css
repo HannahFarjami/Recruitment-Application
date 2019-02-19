@@ -1,8 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 5%;
-    background-color: pink;
-    background-image: url('../fragments/header-imgs/background2.jpg');
+    background-color: white;
+    /*background-image: url('../fragments/header-imgs/background4.jpg'); */
 
     background-size: cover;
     color: #1A1A1B;
