@@ -66,7 +66,7 @@ public class RecruitmentController {
 
 
 
-    @GetMapping("/"+APPLICANT_HOME_URL)
+    @GetMapping("/" + APPLICANT_HOME_URL)
     public String applicantHomeView(Model model){
         PersonDTO person = service.findLoggedInUser();
         if(person==null){

@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import recruitment.domain.IllegalRecruitmentException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 @Controller
 @ControllerAdvice
@@ -23,24 +21,18 @@ public class ExceptionHandlers implements ErrorController {
     public static final String ERROR_INFO_KEY = "errorInfo";
     public static final String GENERIC_ERROR = "Operation Failed";
     public static final String GENERIC_ERROR_INFO = "Sorry, it didn't work. Please try again.";
-    public static final String NO_CONVERSION_FOUND = "No Conversion Found";
-    public static final String NO_CONVERSION_FOUND_INFO = "This conversion could not be computed.";
-    public static final String NO_CONVERSION_FOUND_FOR_UPDATE = "No ";
-    public static final String NO_CONVERSION_FOUND_FOR_UPDATE_INFO = "This conversion update could not be completed.";
-    public static final String HTTP_404 = "The page could not be found";
-    public static final String HTTP_404_INFO = "Sorry, but there is no such page. We would like to fix this error, please tell us what you where trying to do.";
+    public static final String HTTP_404 = "Oops! 404";
+    public static final String HTTP_404_INFO = "We can't seem to find the page you're looking for.";
     static final String ERROR_PATH = "failure";
 
-/*
+    /*
     @ExceptionHandler(IllegalRecruitmentException.class)
     @ResponseStatus(HttpStatus.OK)
     public String handleException(IllegalRecruitmentException exception, Model model) {
         model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
         model.addAttribute(ERROR_INFO_KEY, GENERIC_ERROR_INFO);
         return ERROR_PAGE_URL;
-    }
-
-
+    } */
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -67,7 +59,7 @@ public class ExceptionHandlers implements ErrorController {
     private String extractHttpStatusCode(HttpServletRequest request) {
         return request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString();
     }
-*/
+
     @Override
     public String getErrorPath() {
         return "/" + ERROR_PATH;
