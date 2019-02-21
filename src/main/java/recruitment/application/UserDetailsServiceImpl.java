@@ -65,10 +65,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     public PersonDTO createPerson(String firstName, String lastName, String ssn, String mail, String password) throws FieldAlreadyExistException {
         if(isMailRegistered(mail)) {
-            throw new FieldAlreadyExistException("Mail already exist");
+            throw new FieldAlreadyExistException("Mail already exist","MAIL_ERROR");
         }
         if(isSsnRegistered(ssn)) {
-            throw new FieldAlreadyExistException("Ssn already exist");
+            throw new FieldAlreadyExistException("Ssn already exist","SSN_ERROR");
         }
         Person person = new Person(firstName, lastName, ssn, mail, passwordEncoder.encode(password));
         Role role = roleRepository.findById(2);

@@ -29,6 +29,9 @@ public class RecruitmentController {
     static final String APPLICANT_HOME_URL = "applicant-home";
     static final String RECRUITER_HOME_URL = "recruiter-home";
 
+    static final String SSN_ERROR_MSG = "SSN is already registered";
+    static final String MAIL_ERROR_MSG = "MAIL is already registered";
+
     private static final String CREATE_PERSON_OBJ_NAME = "createPersonForm";
 
     @Autowired
@@ -110,7 +113,10 @@ public class RecruitmentController {
         try {
             service.createPerson(firstName, lastName, ssn, mail, password);
         } catch (FieldAlreadyExistException e) {
-            model.addAttribute("errorMessage", e.getMessage());
+            if(e.ERROR_TYPE=="SSN_ERROR")
+                model.addAttribute("errorMessage", SSN_ERROR_MSG);
+            else
+                model.addAttribute("errorMessage",MAIL_ERROR_MSG);
             return REGISTER_URL;
         }
         return SUCCESSFUL_REGISTRATION;
