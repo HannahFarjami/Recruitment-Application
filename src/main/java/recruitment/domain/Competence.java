@@ -21,6 +21,7 @@ public class Competence {
     @OneToMany(mappedBy = "competence")
     private Set<CompetenceProfile> competenceProfiles;
 
+    //Test
     public Competence() {
     }
 
