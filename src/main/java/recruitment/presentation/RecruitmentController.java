@@ -113,10 +113,10 @@ public class RecruitmentController {
         try {
             service.createPerson(firstName, lastName, ssn, mail, password);
         } catch (FieldAlreadyExistException e) {
-            if(e.ERROR_TYPE=="SSN_ERROR")
+            if(e.ERROR_TYPE == "SSN_ERROR")
                 model.addAttribute("errorMessage", SSN_ERROR_MSG);
             else
-                model.addAttribute("errorMessage",MAIL_ERROR_MSG);
+                model.addAttribute("errorMessage", MAIL_ERROR_MSG);
             return REGISTER_URL;
         }
         return SUCCESSFUL_REGISTRATION;

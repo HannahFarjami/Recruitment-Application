@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import recruitment.domain.IllegalRecruitmentException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +20,8 @@ public class ExceptionHandlers implements ErrorController {
     public static final String ERROR_INFO_KEY = "errorInfo";
     public static final String GENERIC_ERROR = "Operation Failed";
     public static final String GENERIC_ERROR_INFO = "Sorry, it didn't work. Please try again.";
+    public static final String FORBIDDEN_ERROR = "Forbidden";
+    public static final String FORBIDDEN_ERROR_INFO = "You have no permission to see this page.";
     public static final String HTTP_404 = "Oops! 404";
     public static final String HTTP_404_INFO = "We can't seem to find the page you're looking for.";
     static final String ERROR_PATH = "failure";
@@ -38,6 +39,7 @@ public class ExceptionHandlers implements ErrorController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception exception, Model model) {
         model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
+        exception.printStackTrace();
         return ERROR_PAGE_URL;
     }
 
@@ -48,8 +50,15 @@ public class ExceptionHandlers implements ErrorController {
             model.addAttribute(ERROR_TYPE_KEY, HTTP_404);
             model.addAttribute(ERROR_INFO_KEY, HTTP_404_INFO);
             response.setStatus(statusCode);
-        } else {
+        } else if(statusCode == HttpStatus.FORBIDDEN.value()) {
+            model.addAttribute(ERROR_TYPE_KEY, FORBIDDEN_ERROR);
+            model.addAttribute(ERROR_INFO_KEY, FORBIDDEN_ERROR_INFO);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        }
+        else {
             model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
+            System.out.println("login error " + statusCode);
+
             model.addAttribute(ERROR_INFO_KEY, GENERIC_ERROR_INFO);
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
