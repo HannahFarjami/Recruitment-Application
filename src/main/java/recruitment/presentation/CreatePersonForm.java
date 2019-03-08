@@ -4,6 +4,9 @@ import recruitment.util.Util;
 
 import javax.validation.constraints.*;
 
+/**
+ * Object contains and validates data from the register form on the register page
+ */
 class CreatePersonForm {
 
     @Size(min = 1, max = 30, message = "Name must be longer than 1 character but shorter than 30")

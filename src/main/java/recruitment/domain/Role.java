@@ -5,6 +5,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
+/**
+ * Represents the roles that a Person can have.
+ */
 @Entity
 @Table(name = "ROLE")
 public class Role {

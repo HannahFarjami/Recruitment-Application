@@ -1,6 +1,5 @@
 package recruitment.presentation;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 import recruitment.application.UserDetailsServiceImpl;
 import recruitment.domain.FieldAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import recruitment.application.RecruitmentService;
-import recruitment.domain.Person;
 import recruitment.domain.PersonDTO;
-
 import javax.validation.Valid;
 
 /**
@@ -67,8 +63,10 @@ public class RecruitmentController {
         return REGISTER_URL;
     }
 
-
-
+    /**
+     * Get request for application home page, check if there is a logged in user
+     * @return application home URL or login URL if user not logged in
+     */
     @GetMapping("/" + APPLICANT_HOME_URL)
     public String applicantHomeView(Model model){
         PersonDTO person = service.findLoggedInUser();
@@ -80,6 +78,10 @@ public class RecruitmentController {
         return APPLICANT_HOME_URL;
     }
 
+    /**
+     * Get request for recruiter home page, check if there is a logged in user
+     * @return recruiter home URL or login URL if user not logged in
+     */
     @GetMapping("/" + RECRUITER_HOME_URL)
     public String recruiterHomeView(Model model){
         PersonDTO person = service.findLoggedInUser();

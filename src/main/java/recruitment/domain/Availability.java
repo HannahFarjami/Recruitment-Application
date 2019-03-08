@@ -1,11 +1,12 @@
 package recruitment.domain;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Set;
 
+/**
+ * Represents a availability period for a person
+ */
 @Entity
 @Table(name = "Availability")
 public class Availability {

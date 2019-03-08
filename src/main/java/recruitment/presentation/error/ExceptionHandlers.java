@@ -12,6 +12,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Handles all exceptions thrown and HTTP errors.
+ */
 @Controller
 @ControllerAdvice
 public class ExceptionHandlers implements ErrorController {
@@ -26,15 +29,12 @@ public class ExceptionHandlers implements ErrorController {
     public static final String HTTP_404_INFO = "We can't seem to find the page you're looking for.";
     static final String ERROR_PATH = "failure";
 
-    /*
-    @ExceptionHandler(IllegalRecruitmentException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public String handleException(IllegalRecruitmentException exception, Model model) {
-        model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
-        model.addAttribute(ERROR_INFO_KEY, GENERIC_ERROR_INFO);
-        return ERROR_PAGE_URL;
-    } */
-
+    /**
+     * Handle exceptions thrown by the application
+     * @param exception that have been thrown
+     * @param model object used by error page
+     * @return URL error page
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception exception, Model model) {
@@ -43,6 +43,13 @@ public class ExceptionHandlers implements ErrorController {
         return ERROR_PAGE_URL;
     }
 
+    /**
+     * Handles HTTP errors
+     * @param request the actual HTTP request
+     * @param response to the client
+     * @param model object used by error page
+     * @return URL to error page
+     */
     @GetMapping("/" + ERROR_PATH)
     public String handleHttpError(HttpServletRequest request, HttpServletResponse response, Model model) {
         int statusCode = Integer.parseInt(extractHttpStatusCode(request));

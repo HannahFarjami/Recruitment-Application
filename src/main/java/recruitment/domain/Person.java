@@ -9,6 +9,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+/**
+ * Represents a person
+ */
 
 @Entity
 @Table(name = "PERSON")
@@ -22,16 +25,12 @@ public class Person implements PersonDTO {
     private long id;
 
     @NotNull(message = "{firstName.missing}")
-    // The regex below should permit only characters, but asterisk is
-    // unfortunately also valid.
     @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "{firstName.invalid-char}")
     @Size(min = 1, max = 30, message = "{firstName.length}")
     @Column(name = "FIRST_NAME")
     private String firstName;
 
     @NotNull(message = "{lastName.missing}")
-    // The regex below should permit only characters, but asterisk is
-    // unfortunately also valid.
     @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "{lastName.invalid-char}")
     @Size(min = 1, max = 30, message = "{lastName.length}")
     @Column(name = "LAST_NAME")
@@ -58,7 +57,6 @@ public class Person implements PersonDTO {
 
     @OneToMany(mappedBy = "person")
     private Set<CompetenceProfile> competenceProfiles;
-
 
 
     public Person(String firstName, String lastName, String ssn, String mail, String password) {

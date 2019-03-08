@@ -1,10 +1,11 @@
 package recruitment.domain;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
+/**
+ * Represents a competence for a person
+ */
 @Entity
 @Table(name = "COMPETENCE_PROFILE")
 public class CompetenceProfile {

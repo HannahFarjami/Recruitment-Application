@@ -1,10 +1,12 @@
 package recruitment.domain;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
+/**
+ * Represents all competence available
+ */
 @Entity
 @Table(name = "COMPETENCE")
 public class Competence {
@@ -21,7 +23,6 @@ public class Competence {
     @OneToMany(mappedBy = "competence")
     private Set<CompetenceProfile> competenceProfiles;
 
-    //Test
     public Competence() {
     }
 
