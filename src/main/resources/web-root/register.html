@@ -9,25 +9,25 @@
 <main layout:fragment="content">
 
     <section>
-        <h1>Please fill in the form below to register</h1>
+        <h1 th:text="#{register.info}">Please fill in the form below to register</h1>
 
         <form th:action="@{/registerPerson}" th:object="${createPersonForm}" method="post">
-            <p class="form"><label for="register-first-name">First Name</label>:<input type="text" th:field="*{firstName}" id="register-first-name"/>
-                <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error
+            <p class="form"><label for="register-first-name"th:text="#{register.first-name}">First Name</label>:<input type="text" th:field="*{firstName}" id="register-first-name"/>
+                <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:text="#{register.name-error}">Name Error
             </span></p><br><br>
-            <p class="form"><label for="register-last-name">Last Name</label>:<input type="text" th:field="*{lastName}" id="register-last-name"/>
-                <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error
+            <p class="form"><label for="register-last-name" th:text="#{register.last-name}">Last Name</label>:<input type="text" th:field="*{lastName}" id="register-last-name"/>
+                <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"th:text="#{register.name-error}">Name Error
             </span></p><br><br>
-            <p class="form"><label for="register-person-ssn">Ssn</label>:  <input type="text" th:field="*{ssn}" id="register-person-ssn"/>
-                <span class="error" th:if="${#fields.hasErrors('ssn')}" th:errors="*{ssn}">SSN Error</span></p>
+            <p class="form"><label for="register-person-ssn" th:text="#{register.ssn}">Ssn</label>:  <input type="text" th:field="*{ssn}" id="register-person-ssn"/>
+                <span class="error" th:if="${#fields.hasErrors('ssn')}" th:errors="*{ssn}"th:text="#{register.ssn-error}">SSN Error</span></p>
             <br><br>
-            <p class="form"><label for="register-mail">Mail</label>:<input type="text" th:field="*{mail}" id="register-mail"/>
-                <span class="error" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Name Error
+            <p class="form" ><label for="register-mail" th:text="#{register.mail}">Mail</label>:<input type="text" th:field="*{mail}" id="register-mail"/>
+                <span class="error" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"th:text="#{register.mail-error}">Name Error
             </span></p><br><br>
-            <p class="form"><label for="register-password">Password</label>:<input type="password" th:field="*{password}" id="register-password"/>
-                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error
+            <p class="form"><label for="register-password"th:text="#{register.password}">Password</label>:<input type="password" th:field="*{password}" id="register-password"/>
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:text="#{register.password-error}">Name Error
             </span></p><br><br>
-            <p class="submit"><input type="submit" value="Register"/><br><br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{register.register}">Sign in</button>
                 <span class="error" th:if="${errorMessage != null}" th:text="${errorMessage}"></span>
         </form>
     </section>

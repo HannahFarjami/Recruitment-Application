@@ -10,10 +10,10 @@
     <figure id="logo">
         <a th:href="@{/}"><img th:src="@{resources/fragments/header-imgs/logo.png}" alt="recruitment logo"/></a>
     </figure>
-    <p>Recruitment Application</p>
+    <p th:text="#{header.application}">Recruitment Application</p>
     <div class="navbar-text navbar-right">
         <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
-             <button type="button" href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</button>
+             <button th:text="#{header.logout}" type="button" href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</button>
         </form>
     </div>
 </header>

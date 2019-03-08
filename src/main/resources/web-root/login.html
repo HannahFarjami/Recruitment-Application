@@ -1,49 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{resources/fragments/layout}">
 <head>
-    <meta charset="UTF-8">
+
     <title>Title</title>
 </head>
 <body>
 <main layout:fragment="content">
 
     <section>
-        <h1>Login here</h1>
+        <h1 th:text="#{login.title}">Login here</h1>
 
         <form name="f" th:action="@{/login}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <div th:if="${param.error}" class="alert alert-danger">
+            <h2 class="form-signin-heading" th:text="#{login.info}">Please sign in</h2>
+            <div th:if="${param.error}" class="alert alert-danger" th:text="#{login.error-param}">
                 Invalid username and password.
             </div>
-            <div th:if="${param.logout}" class="alert alert-success">
+            <div th:if="${param.logout}" class="alert alert-success"th:text="#{login.logout}">
                 You have been logged out.
             </div>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="true" />
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
+            <label for="username" class="sr-only" th:text="#{login.username}">Username</label>
+            <input type="text" id="username" name="username" class="form-control"  required="true" />
+            <label for="password" class="sr-only" th:text="#{login.password}">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required="true" />
             <div class="checkbox">
                 <label>
-                    <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
+                    <input id="remember-me" name="remember-me" type="checkbox" th:text="#{login.remember-me}" />
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn-sign-in}">Sign in</button>
         </form>
-
-<!--
-        <form name="f" th:action="@{/login}" th:object="${loginForm}" method="post">
-            <p class="form"><label for="username">Mail</label>:<input type="text" th:field="*{mail}" id="username" name="username"/>
-                <span class="error" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Name Error
-            </span></p><br><br>
-            <p class="form"><label for="password">Password</label>:<input type="password" th:field="*{password}" id="password" name="password"/>
-                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error
-            </span></p><br><br>
-            <p class="submit"><input type="submit" value="Login"/>
-            </p>
-        </form>-->
         <br>
-        <a href="register.html" th:href="@{register}">Register here</a>
+        <a href="register.html" th:href="@{register}" th:text="#{login.register-here}">Register here</a>
     </section>
 
 </main>

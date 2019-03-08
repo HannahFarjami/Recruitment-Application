@@ -9,23 +9,23 @@ import javax.validation.constraints.*;
  */
 class CreatePersonForm {
 
-    @Size(min = 1, max = 30, message = "Name must be longer than 1 character but shorter than 30")
-    @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "Only letters are allowed")
+    @Size(min = 1, max = 30, message = "{create-person.first-name.missing}")
+    @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "{create-person.first-name.letters}")
     private String firstName;
 
-    @Size(min = 1, max = 30, message = "Name must be longer than 1 character but shorter than 30")
-    @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "Only letters are allowed")
+    @Size(min = 1, max = 30, message = "{create-person.last-name.missing}")
+    @Pattern(regexp = "^[\\p{L}\\p{M}*]*$", message = "{create-person.last-name.letters}")
     private String lastName;
 
-    @Pattern(regexp = "^[\\p{N}*]*$", message = "Please specify your ssn only with numbers")
-    @Size(min=12, max=12, message = "Please specify your ssn with 12 digits")
+    @Pattern(regexp = "^[\\p{N}*]*$", message = "{create-person.ssn.numbers}")
+    @Size(min=12, max=12, message = "{create-person.ssn.missing}")
     private String ssn;
 
-    @NotBlank(message = "Please specify your email")
+    @NotBlank(message = "{create-person.mail.missing}")
     @Email
     private String mail;
 
-    @Size(min = 4, max = 15, message = "Please enter a password with min 4 and max 15 characters ")
+    @Size(min = 4, max = 15, message = "{create-person.password}")
     private String password;
 
     public String getFirstName() {

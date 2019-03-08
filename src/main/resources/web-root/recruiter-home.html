@@ -8,8 +8,7 @@
 <body>
 <main layout:fragment="content">
     <section>
-    <h1>Welcome Recruiter <span th:text="${person.getFirstName()}"></span>
-    </h1>
+        <h1 th:text="#{rec-home.welc}">Welcome Recruiter</h1><span th:text="${person.getFirstName()}"></span>
     </section>
 </main>
 </body>

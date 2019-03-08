@@ -9,7 +9,7 @@
 <main layout:fragment="content">
 
     <section>
-        <h1>Registration successful, click here to <a th:href="@{login}">login</a></h1>
+        <h1 th:text="#{succ-reg.succ}">Registration successful, click here to </h1><a th:href="@{login}" th:text="#{login.title}">login</a>
     </section>
 
 </main>
