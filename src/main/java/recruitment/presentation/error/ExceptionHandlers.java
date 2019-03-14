@@ -23,7 +23,7 @@ public class ExceptionHandlers implements ErrorController {
     public static final String ERROR_INFO_KEY = "errorInfo";
     public static final String GENERIC_ERROR = "Operation Failed";
     public static final String GENERIC_ERROR_INFO = "Sorry, it didn't work. Please try again.";
-    public static final String FORBIDDEN_ERROR = "Forbidden";
+    public static final String FORBIDDEN_ERROR = "forbidden";
     public static final String FORBIDDEN_ERROR_INFO = "You have no permission to see this page.";
     public static final String HTTP_404 = "Oops! 404";
     public static final String HTTP_404_INFO = "We can't seem to find the page you're looking for.";
